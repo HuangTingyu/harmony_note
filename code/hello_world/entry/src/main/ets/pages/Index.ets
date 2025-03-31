@@ -1,23 +1,30 @@
+import { router } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World?';
-
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
-    }
-    .height('100%')
-    .width('100%')
+    Row(){
+      Button(){
+        Text('hello harmony')
+          .fontSize(22)
+          .fontColor('#fff')
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Normal)
+      .borderRadius('10%')
+      .margin({
+        top: 20
+      }).backgroundColor('#ff9c6e')
+      .width('50%')
+      .height('5%')
+      .onClick(()=>{
+        // router.pushUrl({url:'pages/Second'})
+        router.pushUrl({url:'pages/NotesPage'})
+      })
+
+    }.width('100%').height('100%')
+    .backgroundColor('#E68933')
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 }
