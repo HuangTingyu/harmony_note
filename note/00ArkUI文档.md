@@ -4,6 +4,30 @@ https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-compo
 
 
 
+### 解决上下白条
+
+扩展安全区域
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-previewer-operating-6-V5
+
+```
+@Entry
+@Component
+struct TaskList {
+
+  build() {
+  	Column(){
+  		// ......
+  	}.width('100%')
+    .height('100%').expandSafeArea([SafeAreaType.SYSTEM])
+  
+  }
+
+.expandSafeArea([SafeAreaType.SYSTEM])
+```
+
+
+
 ### resource类型
 
 ```
