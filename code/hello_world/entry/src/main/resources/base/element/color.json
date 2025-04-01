@@ -3,6 +3,10 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "text_title",
+      "value": "#267EF0"
     }
   ]
 }
