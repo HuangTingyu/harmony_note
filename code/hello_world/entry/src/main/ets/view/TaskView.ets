@@ -10,10 +10,10 @@
 
         }.height(164).width(168).backgroundColor('#DCEBFD').borderRadius(5).padding(10)
 
-        Column(){
+        Column() {
           Text('进行中').fontWeight(FontWeight.Bold).fontSize(18)
           Text('0任务').fontWeight(FontWeight.Bold).fontSize(18)
-        }.height(128).width(168).backgroundColor('#F26A62').borderRadius(5).padding(10)
+        }.newLocalFancy()
 
       }.width('50%').height('100%')
 
@@ -34,6 +34,15 @@
       }.width('50%').height('100%')
 
     }.width('100%').height(300)
+  }
+
+  @Styles
+  newLocalFancy() {
+    .height(128)
+    .width(168)
+    .backgroundColor('#F26A62')
+    .borderRadius(5)
+    .padding(10)
   }
 }
 
