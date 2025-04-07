@@ -48,7 +48,7 @@ struct NotesPage {
             // ListItem
           }
           // ForEach
-        })
+        },((item: string)=>item))
       }.width('80%').margin({ top: 20 })
 
 

@@ -8,7 +8,7 @@ struct TaskList {
   build() {
 
       Column(){
-        Text('待办').fontSize(30).fontWeight(FontWeight.Bold).fontColor($r('app.color.text_title'))
+        Text($r('app.string.TaskList_title')).fontSize(30).fontWeight(FontWeight.Bold).fontColor($r('app.color.text_title'))
         Text('提高每日效率').fontSize(14).fontColor('#888').margin({top: 14})
 
         Scroll(){
