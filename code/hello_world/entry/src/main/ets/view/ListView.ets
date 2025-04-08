@@ -1,6 +1,13 @@
-@Preview
+
+@Extend(Column) function columnContainStyle(containBgColor:string){
+  .width('100%').height(120).alignItems(HorizontalAlign.Start)
+  .backgroundColor(containBgColor).borderRadius(10).padding(10)
+}
+
+
 @Component
 struct ListView {
+  @State containBgColor:string = '#fff'
   build() {
     Column({space: 10}){
       Column({space: 10}){
@@ -14,8 +21,9 @@ struct ListView {
           Text('生活').fontColor(Color.White)
         }.width(80).height(30).backgroundColor('#D94339').borderRadius(10).justifyContent(FlexAlign.Center)
 
-      }.width('100%').height(120).alignItems(HorizontalAlign.Start)
-      .backgroundColor(Color.White).borderRadius(10).padding(10)
+      }.columnContainStyle(this.containBgColor).onClick(()=>{
+        this.containBgColor = `#888`
+      })
 
       Column({space: 10}){
         Row(){

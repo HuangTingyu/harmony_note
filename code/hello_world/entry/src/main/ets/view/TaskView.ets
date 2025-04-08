@@ -1,5 +1,17 @@
 @Component
  struct TaskView {
+  @State containBgColor:string = '#F26A62'
+  @Styles
+  processingContain() {
+    .height(128)
+    .width(168)
+    .backgroundColor(this.containBgColor)
+    .borderRadius(5)
+    .padding(10)
+    .onClick(()=>{
+      this.containBgColor = `#888`
+    })
+  }
   build(){
   /**/
     Row(){
@@ -13,7 +25,7 @@
         Column() {
           Text('进行中').fontWeight(FontWeight.Bold).fontSize(18)
           Text('0任务').fontWeight(FontWeight.Bold).fontSize(18)
-        }.newLocalFancy()
+        }.processingContain()
 
       }.width('50%').height('100%')
 
@@ -36,14 +48,7 @@
     }.width('100%').height(300)
   }
 
-  @Styles
-  newLocalFancy() {
-    .height(128)
-    .width(168)
-    .backgroundColor('#F26A62')
-    .borderRadius(5)
-    .padding(10)
-  }
+
 }
 
 export default TaskView
