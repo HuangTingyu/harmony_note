@@ -11,7 +11,11 @@ struct NotesPage {
     this.newNote = ''
 
   }
-
+  @Builder itemEnd(index:number){
+    Button({type: ButtonType.Circle}){
+      Image($r(`app.media.del`)).width(20).height(20)
+    }
+  }
 
   build(){
     Column(){
@@ -44,9 +48,15 @@ struct NotesPage {
                 })
                 .fontSize(14).height(18).backgroundColor('#267EF0')
                 .type(ButtonType.Normal).borderRadius(5)
-            }.width('100%').justifyContent(FlexAlign.SpaceBetween).backgroundColor('#F6F6F7').margin({bottom:5}).padding(5)
+            }.width('100%').justifyContent(FlexAlign.SpaceBetween).backgroundColor('#F7F7F8').margin({bottom:5}).padding(5)
             // ListItem
-          }
+          }.swipeAction({
+            end:{
+              builder: ()=>{
+                this.itemEnd(index)
+              }
+            }
+          })
           // ForEach
         },((item: string)=>item))
       }.width('80%').margin({ top: 20 })
