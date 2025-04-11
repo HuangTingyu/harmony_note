@@ -168,7 +168,7 @@ await this.objectiveRDB?.delete(predicates)
 
 query完记得释放`resultSet`
 
-```
+```typescript
 let plansSet: Array<number> = [];
 
 await this.objectiveRDB?.query().then((resultSet: relationalStore.ResultSet) => {
@@ -176,8 +176,10 @@ await this.objectiveRDB?.query().then((resultSet: relationalStore.ResultSet) => 
         let duration: number = resultSet.getValue(...) as number;
         plansSet.push(duration);
       }
+      
       resultSet.close();
-
 })
+
+return plansSet
 ```
 
