@@ -12,6 +12,18 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    requestPermissions: [
+      {
+        "name" : "ohos.permission.GET_NETWORK_INFO",
+        "reason": "$string:EntryAbility_desc",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ],
     "abilities": [
       {
         "name": "EntryAbility",
