@@ -8,8 +8,22 @@ https://developer.huawei.com/consumer/cn/training/course/slightMooc/C10171749712
 
 ```
 Ability类型的Module： 用于实现应用的功能和特性
+
 每一个Ability类型的Module编译后,称其为HAP（Harmony Ability Package）包
+
 每个HAP包可以独立运行，是应用安装的基本单位
+```
+
+
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-project-overview
+
+```
+一个HAP在工程目录中对应一个Module，它是由代码、资源、三方库及应用/元服务配置文件组成，HAP可以分为Entry和Feature两种类型。
+
+Entry：应用的主模块，作为应用的入口，提供了应用的基础功能。
+
+Feature：应用的动态特性模块，作为应用能力的扩展，可以根据用户的需求和设备类型进行选择性安装。
 ```
 
 
@@ -18,6 +32,14 @@ Ability类型的Module： 用于实现应用的功能和特性
 
 ```
 一个应用是由一个或多个HAP组成
+
+✔
+```
+
+
+
+```
+每个HAP在工程目录中都对应一个Module
 
 ✔
 ```

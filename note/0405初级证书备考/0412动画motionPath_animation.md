@@ -191,3 +191,88 @@ TransitionEffect.OPACITY.combine(TransitionEffect.rotate)
 //为每个动画单独设置时长
 ```
 
+
+
+### 页面转场`geometryTransition`
+
+（1）转场前跟转场后，`geometryTransition`绑定同样的ID
+
+（2）转场前页面
+
+```
+animateTo配合this.pageInfos.pushPath
+```
+
+
+
+```
+private showSearchPage(): void {
+    this.transitionEffect = TransitionEffect.OPACITY;
+    animateTo({
+      curve: curves.interpolatingSpring(0, 1, 342, 38)
+    }, () => {
+      this.pageInfos.pushPath({ name: 'SearchLongTakeTransitionPageTwo' }, false);
+    })
+  }
+
+
+build(){
+	Search({ placeholder: 'Search' })
+	.geometryTransition('SEARCH_ONE_SHOT_DEMO_TRANSITION_ID', { follow: true })
+	.onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Up) {
+              this.showSearchPage();
+            }
+}
+```
+
+
+
+转场后页面
+
+```typescript
+Search({ placeholder: 'DevEco Studio' })
+ .geometryTransition('SEARCH_ONE_SHOT_DEMO_TRANSITION_ID')
+```
+
+
+
+### 模态转场
+
+`bindSheet`里面把提前定义好的`Builder`传进去
+
+```
+bindSheet(isShow: Optional<boolean>, builder: CustomBuilder, options?: SheetOptions)
+
+//第一个参数，是否显示半模态页面
+```
+
+
+
+```
+@Builder
+halfModalLogin() {
+	//...
+}
+
+build() {
+  NavDestination() {
+    Column() {
+      //The Text component is bound for semi-modal display
+      Text()
+        .bindSheet($$this.isPresent, this.halfModalLogin(), {}
+        }
+}
+```
+
+
+
+### 全模态转场
+
+原理同上，只不过把`bindSheet`换成`bindContentCover`
+
+```
+Text()
+  .bindContentCover($$this.isPresentInLoginView, this.defaultLogin())
+```
+
