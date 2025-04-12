@@ -4,6 +4,10 @@ https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-motion-path
 
 
 
+课程
+
+https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101705081897917056
+
 
 
 ### 设置位移路径动画`motionPath`
