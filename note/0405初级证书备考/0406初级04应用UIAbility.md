@@ -4,6 +4,51 @@ https://developer.huawei.com/consumer/cn/training/course/slightMooc/C10171749712
 
 
 
+#### HAP/HSP/HAR
+
+```
+Ability类型的Module： 用于实现应用的功能和特性
+每一个Ability类型的Module编译后,称其为HAP（Harmony Ability Package）包
+每个HAP包可以独立运行，是应用安装的基本单位
+```
+
+
+
+题目
+
+```
+一个应用是由一个或多个HAP组成
+
+✔
+```
+
+
+
+```
+Library类型的Module： 用于实现代码和资源的共享。
+同一个Library类型的Module可以被其他的Module多次引用
+
+Library类型的Module分为Static和Shared两种类型
+Static Library：静态共享库HAR（Harmony Archive Package）
+Shared Library：动态共享库HSP（Harmony Shared Package）。
+```
+
+
+
+```
+HAR和HSP区别
+
+HAR中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝
+
+HAR除了支持应用内引用，还可以独立打包发布，供其他应用引用。
+
+HSP中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。
+
+HSP一般随应用进行打包，当前支持应用内和集成态HSP
+```
+
+
+
 
 
 ### Stage模型设计思想

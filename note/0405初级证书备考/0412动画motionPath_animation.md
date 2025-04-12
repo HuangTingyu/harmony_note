@@ -1,0 +1,189 @@
+文档
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-motion-path-animation
+
+
+
+
+
+### 设置位移路径动画`motionPath`
+
+```
+Button('click me')
+.motionPath({
+  path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y',
+  from: 0.0,
+  to: 1.0,
+  rotatable: true
+}) // 执行动画：从起点移动到(300,200)，再到(300,500)，再到终点
+```
+
+
+
+### 属性动画`animation`
+
+属性改变的时候，可以通过`animation`实现渐变过渡效果
+
+```typescript
+Column({ space: this.space })
+ .width(this.widthSize) // 只有写在animation前面才生效
+ .height(this.heightSize) // 只有写在animation前面才生效
+ .animation({
+   duration: 2000,
+   curve: Curve.EaseOut,
+   iterations: 3,
+   playMode: PlayMode.Normal
+ })
+ // .width(this.widthSize) // 动画不生效
+ // .height(this.heightSize) // 动画不生效
+```
+
+
+
+### 显性动画`animateTo`
+
+同样是添加过渡效果的，但这是一个函数，可以在`onClick`等事件中直接调用
+
+```
+不推荐在aboutToAppear、aboutToDisappear中调用动画
+```
+
+
+
+```
+// 建议使用this.getUIContext()?.animateTo()
+            animateTo({
+              duration: 2000,
+              curve: Curve.EaseOut,
+              iterations: 3,
+              playMode: PlayMode.Normal,
+              onFinish: () => {
+                console.info('play end')
+              }
+```
+
+
+
+### 显示动画立即下发`animateToImmediately`
+
+```
+不建议开发者采用animateToImmediately接口，而应选择animateTo，以防止干扰框架的显示时序，避免在动画启动时因状态设置不完整而导致的显示错误
+
+当应用的主线程存在耗时操作，且需提前更新部分用户界面时，此接口可有效缩短应用的响应延迟
+```
+
+
+
+
+
+### 关键帧动画`keyframeAnimateTo`
+
+```typescript
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext?.();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // 设置关键帧动画整体播放3次
+          this.uiContext.keyframeAnimateTo({ iterations: 3 }, [
+            {
+              // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+
+
+### 页面间转场效果`pageTransition`
+
+这是一个生命周期，写在`build`外面
+
+```
+ pageTransition() {
+    PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
+      .onEnter((type: RouteType, progress: number) => {})
+  
+  PageTransitionExit({ duration: 1200, curve: Curve.Ease })
+      .onExit((type: RouteType, progress: number) => {})
+}
+```
+
+
+
+### 组件内转场`transition`
+
+```
+ Image($r('app.media.testImg')).width(200).height(200)
+          .transition(
+            TransitionEffect.asymmetric(
+              TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
+              TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ delay: 1000, duration: 1000 }))
+              ,
+              TransitionEffect.OPACITY.animation({ delay: 1000, duration: 1000 }).combine(
+              TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 }))
+
+)
+```
+
+
+
+如果不使用`asymmetric`，直接添加动画，则入场跟出场会产生一样的动画
+
+```
+TransitionEffect.asymmetric(appear, disappear)
+```
+
+
+
+```
+.combine合并多个动画
+
+// 透明度合并旋转
+TransitionEffect.OPACITY.combine(TransitionEffect.rotate)
+```
+
+
+
+```
+.animation({ duration: 1000 })
+
+//为每个动画单独设置时长
+```
+
