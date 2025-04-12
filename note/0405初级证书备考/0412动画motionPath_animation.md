@@ -239,6 +239,23 @@ Search({ placeholder: 'DevEco Studio' })
 
 ### 模态转场
 
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-modal-transition-V5
+
+模态转场是新的界面覆盖在旧的界面上，旧的界面不消失的一种转场方式
+
+```
+bindContentCover 全屏模态转场
+bindSheet 半模态组件
+bindMenu 弹出菜单
+bindContextMenu 悬浮菜单
+bindPopup 气泡弹窗
+
+上面这些都需要绑在组件上使用
+如果想独立开发遮罩层，请通过if新增或删除组件
+```
+
+
+
 `bindSheet`里面把提前定义好的`Builder`传进去
 
 ```
