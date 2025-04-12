@@ -193,7 +193,25 @@ TransitionEffect.OPACITY.combine(TransitionEffect.rotate)
 
 
 
-### 页面转场`geometryTransition`
+### 转场高级模板
+
+导航转场、共享元素转场、模态转场
+
+
+
+### 导航转场`Navigation`
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-navigation-transition-V5
+
+```
+Navigation组件
+```
+
+
+
+
+
+### 共享元素转场`geometryTransition`
 
 （1）转场前跟转场后，`geometryTransition`绑定同样的ID
 
@@ -205,7 +223,7 @@ animateTo配合this.pageInfos.pushPath
 
 
 
-```
+```typescript
 private showSearchPage(): void {
     this.transitionEffect = TransitionEffect.OPACITY;
     animateTo({
