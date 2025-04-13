@@ -18,8 +18,8 @@ struct Index {
       .width('50%')
       .height('5%')
       .onClick(()=>{
-        // router.pushUrl({url:'pages/Second'})
-        router.pushUrl({url:'pages/NotesPage'})
+        router.pushUrl({url:'pages/testWeb'})
+        // router.pushUrl({url:'pages/NotesPage'})
       })
 
     }.width('100%').height('100%')
