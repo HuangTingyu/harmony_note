@@ -4,19 +4,15 @@ https://developer.huawei.com/consumer/cn/training/course/slightMooc/C10171749712
 
 
 
-#### HAP/HSP/HAR
-
-```
-Ability类型的Module： 用于实现应用的功能和特性
-
-每一个Ability类型的Module编译后,称其为HAP（Harmony Ability Package）包
-
-每个HAP包可以独立运行，是应用安装的基本单位
-```
-
-
+### APP包结构
 
 https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-project-overview
+
+```
+应用/元服务发布形态为APP Pack，它是由一个或多个HAP包，及描述App Pack属性的pack.info组成
+```
+
+
 
 ```
 一个HAP在工程目录中对应一个Module，它是由代码、资源、三方库及应用/元服务配置文件组成，HAP可以分为Entry和Feature两种类型。
@@ -24,6 +20,18 @@ https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-project-overvi
 Entry：应用的主模块，作为应用的入口，提供了应用的基础功能。
 
 Feature：应用的动态特性模块，作为应用能力的扩展，可以根据用户的需求和设备类型进行选择性安装。
+```
+
+
+
+### HAP
+
+```
+Ability类型的Module： 用于实现应用的功能和特性
+
+每一个Ability类型的Module编译后,称其为HAP（Harmony Ability Package）包
+
+每个HAP包可以独立运行，是应用安装的基本单位
 ```
 
 
@@ -45,6 +53,10 @@ Feature：应用的动态特性模块，作为应用能力的扩展，可以根�
 ```
 
 
+
+### HSP/HAR
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/application-package-structure-stage
 
 ```
 Library类型的Module： 用于实现代码和资源的共享。
@@ -70,6 +82,69 @@ HSP一般随应用进行打包，当前支持应用内和集成态HSP
 ```
 
 
+
+### 开发态-编译态
+
+```
+ets目录：ArkTS源码生成.abc文件
+
+resources目录：AppScope目录中的resources合入Module中的resources，如存在同名，只保留AppScope
+
+module配置文件：AppScope中的app.json5合入Module中的module.json5
+```
+
+
+
+```
+在编译HAP和HSP时，会把他们所依赖的HAR直接编译到HAP和HSP中。
+```
+
+
+
+### `ExtensionAbility`
+
+基于特定场景提供的组件（如服务卡片、输入法等），每一个场景对应一个`ExtensionAbilityType`，只能使用系统已定义的类型
+
+同一应用所有的`ExtensionAbility`处于同一独立进程，跟UIAbility不在同一进程
+
+```
+HAP,HAR,HSP都支持在配置文件中声明UIAbility
+
+只有HAP支持声明ExtensionAbility，HAR和HSP不支持
+```
+
+
+
+### 进程模型
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/process-model-stage-V14
+
+```
+通常情况下，应用中（同一Bundle名称）的所有UIAbility均是运行在同一个独立进程（主进程）中，如下图中绿色部分的“Main Process”。
+仅系统应用支持构建ServiceExtensionAbility和DataShareExtensionAbility。
+
+应用中（同一Bundle名称）的所有同一类型ExtensionAbility均是运行在一个独立进程中，如下图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
+
+WebView拥有独立的渲染进程，如下图中黄色部分的“Render Process”
+```
+
+
+
+### Stage线程
+
+https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/thread-model-stage-V14
+
+
+
+```
+线程主要有3类
+
+主线程、TaskPool Worker线程、Worker线程
+
+TaskPool Worker用于执行耗时操作，支持设置调度优先级，负载均衡等能力
+
+Worker线程用于执行耗时操作，支持线程间通信
+```
 
 
 
