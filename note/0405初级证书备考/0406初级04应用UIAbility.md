@@ -380,6 +380,14 @@ eventHubFunc(): void {
 
 
 
+### abilityName
+
+```
+表示待启动的Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。
+```
+
+
+
 ### 多个`UIAbility`互相通信
 
 #### 启动应用内`UIAbility`
@@ -469,4 +477,6 @@ let abilityResult: common.AbilityResult = {
             };
             context.terminateSelfWithResult(abilityResult, (err) => {})
 ```
+
+
 

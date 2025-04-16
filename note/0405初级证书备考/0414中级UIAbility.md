@@ -181,6 +181,56 @@ build-profile.json5配置
 
 
 
+### `AppStartup`
+
+支持任务异步启动，加快启动速度
+
+设置多个启动任务的执行顺序，及依赖关系
+
+启动框架支持自动模式/手动模式，默认自动模式
+
+
+
+```
+1 resource/base/profile下，新建文件startup_config.json
+2 ets/startup文件下创建启动文件StartupTask_001.ets
+3 创建启动任务参数配置文件StartupConfig.ets
+4 module.json5里面配置
+```
+
+
+
+`StartupConfig.ets`
+
+```
+{
+	"startupTasks": [
+		{
+			name: 'StartupTask_001.ets'
+		}
+	],
+	"configEntry": "./ets/startup/StartupConfig.ets"
+}
+```
+
+
+
+`module.json5`
+
+```
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    // ...
+    "appStartup": "$profile:startup_config", // 启动框架的配置文件
+    // ...
+  }
+}
+```
+
+
+
 ### 判断/单选
 
 ```
