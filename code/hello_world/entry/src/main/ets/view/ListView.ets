@@ -4,6 +4,7 @@
   .backgroundColor(containBgColor).borderRadius(10).padding(10)
 }
 
+// const enum MyColor{'RED', 'BLUE'}
 
 @Component
 struct ListView {

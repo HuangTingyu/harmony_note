@@ -24,6 +24,9 @@ struct NotesPage {
         .fontColor('#267EF0')
         .margin({top:20, bottom:20})
 
+      // TextArea({placeholder: '请输入'})
+      //   .onChange((event)=>{console.log(event)})
+
       TextInput({
         text: this.newNote,
         placeholder: '添加'
