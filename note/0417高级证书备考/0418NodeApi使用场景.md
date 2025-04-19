@@ -82,7 +82,7 @@ complete从上下文获取结果，转为napi_value类型，返回结果
 // 结果计算出来以后，要创建异步工作项
 napi_create_async_work
 
-// 然后把async_work推进缓冲队列中，等待消费进程调用
+// 然后把async_work将异步任务加入队列，等待调度执行
 napi_queue_async_work(env, contextData->asyncWork);
 ```
 
@@ -197,7 +197,7 @@ Native侧C++子线程不可跨线程访问ArkTS对象
 
 
 
-对比2：这里省了一个把异步工作推进缓冲队列的步骤
+对比2：这里省了一个把异步工作加入`libuv`线程池的操作
 
 只需要把结果跟`callBack`通通交给`napi_create_threadsafe_function`
 
